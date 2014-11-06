@@ -13,10 +13,58 @@ from Tkinter import *
 root = Tk()
 
 drawpad = Canvas(root, width=800,height=600, background='white')
-player = drawpad.create_oval(390,580,410,600, fill="red")
-
+player = drawpad.create_oval(390,580,410,600, fill="green")
+direction = 5
 # Create your "enemies" here, before the class
+circle = drawpad.create_oval(350, 250, 550, 450, fill='red')
+oval = drawpad.create_oval(100, 300, 350, 350, fill='purple')
+square = drawpad.create_rectangle(100, 10, 50, 50, fill='yellow')
 
+#Animation Functions
+def animateCircle():
+    global direction
+    # Get the x and y co-ordinates of the circle
+    x1, y1, x2, y2 = drawpad.coords(circle)
+    if x2 > 850: 
+        direction = - 1000
+    elif x1 < 0:
+        direction = 3
+    #Move our oval object by the value of direction
+    drawpad.move(circle,direction,0)
+    # Wait for 1 millisecond, then recursively call our animate function
+    drawpad.after(10, animateCircle)
+    
+animateCircle()
+
+def animateOval():
+    global direction
+    # Get the x and y co-ordinates of the circle
+    x1, y1, x2, y2 = drawpad.coords(oval)
+    if x2 > 850: 
+        direction = - 1000
+    elif x1 < 0:
+        direction = 7
+    #Move our oval object by the value of direction
+    drawpad.move(oval,direction,0)
+    # Wait for 1 millisecond, then recursively call our animate function
+    drawpad.after(10, animateOval)
+    
+animateOval()
+    
+def animateSquare():
+    global direction
+    # Get the x and y co-ordinates of the circle
+    x1, y1, x2, y2 = drawpad.coords(square)
+    if x2 > 850: 
+        direction = - 1000
+    elif x1 < 0:
+        direction = 4
+    #Move our oval object by the value of direction
+    drawpad.move(square,direction,0)
+    # Wait for 1 millisecond, then recursively call our animate function
+    drawpad.after(10, animateSquare)
+    
+animateSquare()
 
 class MyApp:
 	def __init__(self, parent):
