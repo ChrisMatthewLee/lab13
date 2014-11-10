@@ -15,7 +15,7 @@ root = Tk()
 drawpad = Canvas(root, width=800,height=600, background='white')
 player = drawpad.create_oval(390,580,410,600, fill="green")
 direction1 = 5
-direction2 = -7
+direction2 = 7
 direction3 = 9
 # Create your "enemies" here, before the class
 circle = drawpad.create_oval(350, 250, 550, 450, fill='red')
@@ -35,7 +35,7 @@ def animateCircle():
     drawpad.move(circle,direction1,0)
     # Wait for 1 millisecond, then recursively call our animate function
     drawpad.after(10, animateCircle)
-    
+
 animateCircle()
 
 def animateOval():
@@ -43,13 +43,13 @@ def animateOval():
     # Get the x and y co-ordinates of the circle
     x1, y1, x2, y2 = drawpad.coords(oval)
     if x2 > drawpad.winfo_width(): 
-        direction2 = 1000
+        direction2 = - 1000
     elif x1 < 0:
-        direction2 = -7
+        direction2 = 7
     #Move our oval object by the value of direction
     drawpad.move(oval,direction2,0)
     # Wait for 1 millisecond, then recursively call our animate function
-    drawpad.after(10, animateOval)
+    drawpad.after(10, animateOval)   
     
 animateOval()
     
